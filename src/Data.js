@@ -21,6 +21,6 @@ const ProductData = {
             stock: 0
         },
     ]
-}
+};
 
 export default ProductData;
