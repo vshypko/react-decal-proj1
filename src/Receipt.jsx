@@ -10,7 +10,7 @@ class Receipt extends React.Component {
     }
 
     renderItem(item) {
-        return <div className="receipt-item" key={item.name}>
+        return <div className="receipt-item" key={item.productName}>
             <div className="receipt-text">
                 {item.productName} x {item.count}
             </div>

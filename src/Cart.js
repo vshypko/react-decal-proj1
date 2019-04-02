@@ -9,6 +9,7 @@ class Cart extends React.Component {
     constructor(props) {
         super(props);
         this.handleAddToCart = this.handleAddToCart.bind(this);
+        this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
         this.state = {
             cartItems: []
         };
@@ -20,16 +21,14 @@ class Cart extends React.Component {
             price: price,
             count: 1
         };
-        console.log(item);
         let array = this.state.cartItems.slice();
         let found = false;
-        console.log(this.state.cartItems.length);
         for (let i = 0; i < this.state.cartItems.length; i++) {
             if (this.state.cartItems[i].productName === productName) {
                 array[i].count += 1;
                 this.setState({
                     cartItems: array
-                })
+                });
                 found = true;
             }
         }
@@ -37,8 +36,15 @@ class Cart extends React.Component {
             array.push(item);
             this.setState({
                 cartItems: array
-            })
+            });
         }
+    }
+
+    handleRemoveFromCart(productName) {
+        let result = this.state.cartItems.filter(item => item.productName !== productName);
+        this.setState({
+            cartItems: result
+        });
     }
 
     render() {
@@ -48,9 +54,11 @@ class Cart extends React.Component {
                 <div className="ui cards">
                     {data.map((data) => (
                         <Product
+                            key={data.name}
                             productName={data.name}
                             price={data.cost}
                             onAddToCart={this.handleAddToCart}
+                            onRemoveFromCart={this.handleRemoveFromCart}
                         />
                     ))}
                 </div>
