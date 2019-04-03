@@ -62,11 +62,9 @@ class Cart extends React.Component {
                         />
                     ))}
                 </div>
-                <div>
-                    <Receipt
-                        items={this.state.cartItems}
-                    />
-                </div>
+                <Receipt
+                    items={this.state.cartItems}
+                />
             </div>
         );
     }
